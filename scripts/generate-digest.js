@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * generate-digest.js
  * Calls the Claude API with web search to generate a fresh Iran conflict digest.
@@ -10,14 +11,12 @@ const fs = require('fs');
 const path = require('path');
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-
 if (!ANTHROPIC_API_KEY) {
   console.error('ERROR: ANTHROPIC_API_KEY environment variable not set.');
   process.exit(1);
 }
 
-const SYSTEM_PROMPT = `You are a senior foreign affairs journalist writing for an Australian audience.
-Your job is to produce a clear, unbiased, factual daily briefing on the Iran conflict and related regional developments.
+const SYSTEM_PROMPT = `You are a senior foreign affairs journalist writing for an Australian audience. Your job is to produce a clear, unbiased, factual daily briefing on the Iran conflict and related regional developments.
 
 RULES:
 - Be strictly factual. Do not editoralise, speculate, or take sides.
@@ -30,7 +29,6 @@ RULES:
 
 OUTPUT FORMAT:
 You must return ONLY valid JSON — no markdown, no code fences, no preamble. Just the raw JSON object.
-
 The JSON must match this exact schema:
 {
   "generated_at": "<ISO 8601 datetime string in Australian Eastern time>",
@@ -60,9 +58,7 @@ const USER_PROMPT = `Today is ${new Date().toLocaleDateString('en-AU', {
   weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Sydney'
 })}.
 
-Please research and write today's Iran conflict briefing for Australians.
-
-Use your web search capability to find the most recent news and developments from the past 24-48 hours. Search for:
+Please research and write today's Iran conflict briefing for Australians. Use your web search capability to find the most recent news and developments from the past 24-48 hours. Search for:
 - Iran conflict latest news today
 - Iran regional tensions today
 - Strait of Hormuz oil shipping news
@@ -70,45 +66,27 @@ Use your web search capability to find the most recent news and developments fro
 - Iran Australia relations
 - Middle East conflict today Australia
 
-Then synthesise what you find into the structured JSON digest. Prioritise information from the last 24 hours.`;
+Then synthesise what you find into the structured JSON digest. Prioritise information from the last 24 hours.
 
-async function generateDigest() {
-  console.log('Generating digest at', new Date().toISOString());
+IMPORTANT: Your final response must be ONLY the raw JSON object. No explanation, no markdown, no preamble before or after the JSON.`;
 
-  const requestBody = {
-    model: 'claude-opus-4-20250514',
-    max_tokens: 4000,
-    system: SYSTEM_PROMPT,
-    tools: [
-      {
-        type: 'web_search_20250305',
-        name: 'web_search'
-      }
-    ],
-    messages: [
-      {
-        role: 'user',
-        content: USER_PROMPT
-      }
-    ]
-  };
-
-  let response;
-  try {
-    response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-beta': 'web-search-2025-03-05'
-      },
-      body: JSON.stringify(requestBody)
-    });
-  } catch (err) {
-    console.error('Network error calling Claude API:', err.message);
-    process.exit(1);
-  }
+async function callClaude(messages) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+      'anthropic-beta': 'web-search-2025-03-05'
+    },
+    body: JSON.stringify({
+      model: 'claude-opus-4-20250514',
+      max_tokens: 4000,
+      system: SYSTEM_PROMPT,
+      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+      messages
+    })
+  });
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -116,56 +94,69 @@ async function generateDigest() {
     process.exit(1);
   }
 
-  const data = await response.json();
+  return response.json();
+}
 
-  // Handle multi-turn: Claude may use web search tool and then respond
-  // If stop_reason is tool_use, we need to continue the conversation
-  let finalContent = data.content;
+async function generateDigest() {
+  console.log('Generating digest at', new Date().toISOString());
+
   let messages = [{ role: 'user', content: USER_PROMPT }];
+  let finalContent = null;
+  let iterations = 0;
+  const MAX_ITERATIONS = 10;
 
-  if (data.stop_reason === 'tool_use') {
-    // Claude used tools — continue the conversation to get final text
-    messages.push({ role: 'assistant', content: data.content });
+  // Loop until Claude finishes (handles multiple web search tool calls)
+  while (iterations < MAX_ITERATIONS) {
+    iterations++;
+    console.log(`API call iteration ${iterations}...`);
 
-    // Add tool results (web search handles this internally via API, but we may need to loop)
-    // For web_search tool, the API handles retrieval internally and returns results
-    // We just need to send back and let it continue
-    const toolUseBlocks = data.content.filter(b => b.type === 'tool_use');
-    const toolResults = toolUseBlocks.map(block => ({
-      type: 'tool_result',
-      tool_use_id: block.id,
-      content: 'Please use the search results you retrieved to write the digest.'
-    }));
+    const data = await callClaude(messages);
+    console.log(`stop_reason: ${data.stop_reason}, content blocks: ${data.content.length}`);
 
-    messages.push({ role: 'user', content: toolResults });
+    if (data.stop_reason === 'end_turn') {
+      finalContent = data.content;
+      break;
+    }
 
-    const continueResponse = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-beta': 'web-search-2025-03-05'
-      },
-      body: JSON.stringify({
-        model: 'claude-opus-4-20250514',
-        max_tokens: 4000,
-        system: SYSTEM_PROMPT,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages
-      })
-    });
+    if (data.stop_reason === 'tool_use') {
+      // Add assistant message with tool_use blocks
+      messages.push({ role: 'assistant', content: data.content });
 
-    const continueData = await continueResponse.json();
-    finalContent = continueData.content;
+      // For web_search_20250305, send back empty tool results
+      // Anthropic's API fills in actual search results server-side
+      const toolResults = data.content
+        .filter(b => b.type === 'tool_use')
+        .map(b => ({
+          type: 'tool_result',
+          tool_use_id: b.id,
+          content: ''
+        }));
+
+      messages.push({ role: 'user', content: toolResults });
+      continue;
+    }
+
+    // Unexpected stop reason — use whatever we have
+    console.warn(`Unexpected stop_reason: ${data.stop_reason}`);
+    finalContent = data.content;
+    break;
   }
 
-  // Extract JSON from text blocks
-  const textBlock = finalContent.find(b => b.type === 'text');
-  if (!textBlock) {
-    console.error('No text block in response. Content:', JSON.stringify(finalContent, null, 2));
+  if (!finalContent) {
+    console.error('No final content after', iterations, 'iterations');
     process.exit(1);
   }
+
+  // Find the LAST text block (earlier blocks may be conversational preamble)
+  const textBlocks = finalContent.filter(b => b.type === 'text');
+  const textBlock = textBlocks[textBlocks.length - 1];
+
+  if (!textBlock) {
+    console.error('No text block in final response. Content:', JSON.stringify(finalContent, null, 2));
+    process.exit(1);
+  }
+
+  console.log('Raw text (first 200 chars):', textBlock.text.substring(0, 200));
 
   let digestJson;
   try {
@@ -175,7 +166,6 @@ async function generateDigest() {
       .replace(/^```\s*/i, '')
       .replace(/```\s*$/i, '')
       .trim();
-
     digestJson = JSON.parse(cleaned);
   } catch (err) {
     console.error('Failed to parse JSON from Claude response:', err.message);
@@ -190,7 +180,6 @@ async function generateDigest() {
 
   const outputPath = path.join(__dirname, '..', 'public', 'digest.json');
   fs.writeFileSync(outputPath, JSON.stringify(digestJson, null, 2));
-
   console.log('Digest written to', outputPath);
   console.log('Sections generated:', digestJson.sections?.length ?? 0);
   console.log('Done.');

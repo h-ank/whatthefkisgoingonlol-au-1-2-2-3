@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-04-04T06:00:00+11:00",
+  "sources": [
+    "Reuters",
+    "Associated Press",
+    "BBC World Service",
+    "Al Jazeera English",
+    "The Guardian",
+    "ABC Australia",
+    "AFR"
+  ],
+  "sections": [
+    {
+      "label": "Situation Overview",
+      "title": "What is happening right now",
+      "paragraphs": [
+        "This section is generated fresh every morning by AI research. When the automation is running, today's actual news digest will appear here.",
+        "Each section covers a different angle of the conflict — from the military situation on the ground to diplomatic developments, economic impacts, and what it all means for Australia specifically."
+      ],
+      "key_facts": [
+        "This is a placeholder digest — live content will appear once the automation is deployed",
+        "Updated daily at 6AM AEDT",
+        "Sources drawn from major international wire services and verified outlets"
+      ],
+      "australia_relevance": "Australia's position as a close US ally and significant LNG exporter means developments in the Persian Gulf directly affect Australian foreign policy and energy markets."
+    },
+    {
+      "label": "Background",
+      "title": "How we got here — the essential context",
+      "paragraphs": [
+        "Understanding current events requires context. This section always covers the historical background needed to make sense of today's news — written for readers who haven't been following closely.",
+        "It assumes no prior knowledge and avoids jargon. Think of it as the explainer you wished every news article included before diving into the day's developments."
+      ],
+      "key_facts": [],
+      "australia_relevance": null
+    },
+    {
+      "label": "Diplomacy",
+      "title": "What the world's governments are saying and doing",
+      "paragraphs": [
+        "This section tracks diplomatic activity — statements from the UN Security Council, bilateral negotiations, sanctions regimes, and the positions of key players including the US, UK, EU, Russia, China, and Australia's own government.",
+        "We flag when Australian officials make statements or when Australian policy is affected."
+      ],
+      "key_facts": [],
+      "australia_relevance": null
+    },
+    {
+      "label": "Economy & Energy",
+      "title": "Oil, gas, and what it costs you at the bowser",
+      "paragraphs": [
+        "The Strait of Hormuz carries roughly 20% of the world's oil supply. Any disruption has immediate global price consequences. This section tracks energy market movements, sanctions impacts, and what it means for Australian fuel and energy prices.",
+        "Australia is itself a major LNG exporter — which creates a complicated dual position as both potentially benefiting from higher energy prices and being exposed to supply chain disruptions."
+      ],
+      "key_facts": [],
+      "australia_relevance": "Australian motorists and businesses are directly exposed to any Persian Gulf disruption through global oil price movements. The RBA monitors energy price inflation closely."
+    },
+    {
+      "label": "What to watch",
+      "title": "The key things to follow in coming days",
+      "paragraphs": [
+        "This section flags the specific developments, deadlines, and flashpoints to watch — so you know what news to pay attention to and what context to apply when it arrives.",
+        "We avoid speculation but do note where credible analysts see escalation risk or opportunity for de-escalation."
+      ],
+      "key_facts": [],
+      "australia_relevance": null
+    }
+  ]
+}

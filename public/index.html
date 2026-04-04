@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is Going On — Iran Conflict Explained for Australians</title>
+  <meta name="description" content="Unbiased, daily-updated facts on the Iran conflict — written for Australians. No spin, no agenda." />
+  <meta property="og:title" content="What Is Going On" />
+  <meta property="og:description" content="Unbiased daily digest of the Iran conflict for Australians." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-muted: #5a5a55;
+      --ink-faint: #9a9a94;
+      --paper: #f5f0e8;
+      --paper-warm: #ede8dc;
+      --paper-mid: #d8d2c4;
+      --accent: #8b1a1a;
+      --accent-light: #c94040;
+      --rule: rgba(26,26,24,0.15);
+      --column: 680px;
+      --wide: 960px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e8e4da;
+        --ink-muted: #a8a49a;
+        --ink-faint: #6a6660;
+        --paper: #1c1a16;
+        --paper-warm: #232018;
+        --paper-mid: #2e2b22;
+        --accent: #d4605a;
+        --accent-light: #e87f7a;
+        --rule: rgba(232,228,218,0.12);
+      }
+    }
+
+    html { font-size: 18px; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      border-bottom: 3px double var(--ink);
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .masthead-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 8vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .masthead-subtitle {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      margin-top: 0.6rem;
+    }
+
+    .masthead-date-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    .masthead-date-bar span { display: flex; align-items: center; gap: 0.35rem; }
+    .masthead-date-bar .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* LAYOUT */
+    .container {
+      max-width: var(--wide);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .column {
+      max-width: var(--column);
+      margin: 0 auto;
+    }
+
+    /* LOADING / ERROR STATES */
+    #loading-state {
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--rule);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #error-state {
+      display: none;
+      padding: 5rem 1.5rem;
+      text-align: center;
+      color: var(--ink-muted);
+    }
+
+    /* DIGEST */
+    #digest {
+      display: none;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* LAST UPDATED BANNER */
+    .update-banner {
+      background: var(--paper-warm);
+      border: 1px solid var(--paper-mid);
+      border-radius: 4px;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .update-banner-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .update-banner-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      line-height: 1;
+      padding-bottom: 2px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-body p {
+      margin-bottom: 1.1rem;
+      font-size: 1rem;
+    }
+
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* KEY FACTS */
+    .key-facts {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .key-facts-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .key-facts ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-facts li {
+      font-size: 0.92rem;
+      padding: 0.35rem 0;
+      padding-left: 1rem;
+      position: relative;
+      color: var(--ink-muted);
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .key-facts li:last-child { border-bottom: none; }
+
+    .key-facts li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    /* AUSTRALIA FLAG */
+    .aus-callout {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--paper-warm);
+      border: 1px solid var(--paper-mid);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .aus-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .aus-callout-text {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .aus-callout-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    /* SOURCES */
+    .sources-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 3px double var(--rule);
+    }
+
+    .sources-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .source-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.3rem 0.7rem;
+      background: var(--paper-warm);
+      border: 1px solid var(--paper-mid);
+      border-radius: 3px;
+      color: var(--ink-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 3px double var(--rule);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-mission {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+
+    .footer-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      line-height: 2;
+    }
+
+    /* ABOUT PAGE */
+    #about-page {
+      display: none;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .about-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-body p {
+      margin-bottom: 1rem;
+      color: var(--ink-muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      html { font-size: 16px; }
+      .masthead { padding: 1.5rem 1rem 1rem; }
+      nav { gap: 1.25rem; padding: 0.6rem 1rem; }
+      .section-header { flex-direction: column; gap: 0.25rem; }
+    }
+
+    /* ANIMATION */
+    .fade-in {
+      animation: fadeIn 0.4s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-eyebrow">Daily briefing · Australian perspective</div>
+    <h1 class="masthead-title">What Is Going On</h1>
+    <p class="masthead-subtitle">The Iran conflict, explained plainly — updated every morning</p>
+    <div class="masthead-date-bar">
+      <span id="current-date">Loading...</span>
+      <span class="dot"></span>
+      <span>Updated 6AM AEDT daily</span>
+      <span class="dot"></span>
+      <span>No agenda. No spin.</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showPage('digest')">Today's Briefing</a>
+    <a href="#" onclick="showPage('about')">About This Site</a>
+  </nav>
+
+  <!-- DIGEST PAGE -->
+  <main class="container">
+
+    <div id="loading-state">
+      <div class="spinner"></div>
+      <p style="font-style:italic; color: var(--ink-muted); font-size: 0.9rem;">Loading today's briefing...</p>
+    </div>
+
+    <div id="error-state" class="column">
+      <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Briefing unavailable</p>
+      <p style="font-size: 0.9rem;">Something went wrong loading today's digest. Try refreshing.</p>
+    </div>
+
+    <div id="digest" class="column fade-in">
+      <!-- Injected by loadDigest() -->
+    </div>
+
+    <div id="about-page" class="column fade-in">
+      <h2 class="about-title">About this site</h2>
+      <div class="about-body">
+        <p>This site exists because the Iran conflict is genuinely complicated — and most coverage is written for audiences that already know the background, filtered through editorial angles that may or may not align with yours.</p>
+        <p>Every morning at 6AM AEDT, an AI (Claude, by Anthropic) researches the latest developments across multiple international news sources, synthesises them into plain language, and publishes a fresh digest here. No human editor chooses what to emphasise — the brief is generated fresh from the current news landscape.</p>
+        <p>The Australian angle matters because Australia has a stake in regional stability, energy prices, and allied relationships that differs from the US or UK perspective. We try to surface that relevance explicitly.</p>
+        <p><strong>Sources consulted daily:</strong> Reuters, Associated Press, BBC World Service, Al Jazeera English, The Guardian, ABC Australia, The Australian Financial Review, and various verified government and think-tank publications.</p>
+        <p><strong>What this site is not:</strong> It is not affiliated with any government, political party, religious organisation, or news outlet. It does not take a position on who is "right." It reports verifiable facts and labels speculation as such.</p>
+        <p style="font-size: 0.85rem; color: var(--ink-faint); font-style: italic;">Built and maintained by an Australian who got tired of having to visit twelve tabs to understand what was happening.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="container">
+    <p class="footer-mission">"An informed citizenry is vital for the proper functioning of a democracy."<br>Facts, not fear. Context, not clickbait.</p>
+    <p class="footer-meta">
+      whatisgoingon.com.au · Updated daily 6AM AEDT<br>
+      AI-generated digest · Sources cited within each briefing<br>
+      Not affiliated with any government, party, or media organisation
+    </p>
+  </footer>
+
+  <script>
+    // Set current date in masthead
+    const now = new Date();
+    const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Sydney' };
+    document.getElementById('current-date').textContent = now.toLocaleDateString('en-AU', opts);
+
+    function showPage(page) {
+      document.getElementById('digest').style.display = page === 'digest' ? 'block' : 'none';
+      document.getElementById('about-page').style.display = page === 'about' ? 'block' : 'none';
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('error-state').style.display = 'none';
+    }
+
+    async function loadDigest() {
+      try {
+        const res = await fetch('./digest.json?v=' + Date.now());
+        if (!res.ok) throw new Error('No digest');
+        const data = await res.json();
+
+        const container = document.getElementById('digest');
+        let html = '';
+
+        // Update banner
+        const updated = new Date(data.generated_at);
+        const updatedStr = updated.toLocaleString('en-AU', {
+          timeZone: 'Australia/Sydney',
+          day: 'numeric', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+
+        html += `
+          <div class="update-banner">
+            <span class="update-banner-label"><span class="live-dot"></span>Latest briefing</span>
+            <span class="update-banner-time">${updatedStr} AEDT</span>
+          </div>
+        `;
+
+        // Sections
+        data.sections.forEach((section, i) => {
+          html += `<div class="section">`;
+          html += `
+            <div class="section-header">
+              <span class="section-number">${String(i + 1).padStart(2, '0')}</span>
+              <span class="section-label">${section.label || ''}</span>
+            </div>
+            <h2 class="section-title">${section.title}</h2>
+            <div class="section-body">
+          `;
+
+          section.paragraphs.forEach(p => {
+            html += `<p>${p}</p>`;
+          });
+
+          if (section.key_facts && section.key_facts.length) {
+            html += `<div class="key-facts">
+              <div class="key-facts-title">Key facts</div>
+              <ul>
+                ${section.key_facts.map(f => `<li>${f}</li>`).join('')}
+              </ul>
+            </div>`;
+          }
+
+          if (section.australia_relevance) {
+            html += `<div class="aus-callout">
+              <div class="aus-icon">🇦🇺</div>
+              <div>
+                <div class="aus-callout-label">Why this matters for Australia</div>
+                <div class="aus-callout-text">${section.australia_relevance}</div>
+              </div>
+            </div>`;
+          }
+
+          html += `</div></div>`;
+        });
+
+        // Sources
+        if (data.sources && data.sources.length) {
+          html += `<div class="sources-section">
+            <div class="sources-title">Sources consulted in this briefing</div>
+            <div class="sources-list">
+              ${data.sources.map(s => `<span class="source-tag">${s}</span>`).join('')}
+            </div>
+          </div>`;
+        }
+
+        container.innerHTML = html;
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('digest').style.display = 'block';
+
+      } catch (e) {
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('error-state').style.display = 'block';
+        console.error(e);
+      }
+    }
+
+    loadDigest();
+  </script>
+
+</body>
+</html>

@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --ink: #1a1a18;
       --ink-muted: #5a5a55;
@@ -36,7 +36,7 @@
       --column: 680px;
       --wide: 960px;
     }
-
+ 
     @media (prefers-color-scheme: dark) {
       :root {
         --ink: #e8e4da;
@@ -50,9 +50,9 @@
         --rule: rgba(232,228,218,0.12);
       }
     }
-
+ 
     html { font-size: 18px; }
-
+ 
     body {
       background: var(--paper);
       color: var(--ink);
@@ -61,13 +61,13 @@
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
-
+ 
     .masthead {
       border-bottom: 3px double var(--ink);
       padding: 2.5rem 1.5rem 1.5rem;
       text-align: center;
     }
-
+ 
     .masthead-eyebrow {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.65rem;
@@ -76,7 +76,7 @@
       color: var(--ink-muted);
       margin-bottom: 0.75rem;
     }
-
+ 
     .masthead-title {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2.4rem, 8vw, 4.5rem);
@@ -85,7 +85,7 @@
       letter-spacing: -0.02em;
       color: var(--ink);
     }
-
+ 
     .masthead-subtitle {
       font-family: 'Source Serif 4', Georgia, serif;
       font-weight: 300;
@@ -94,7 +94,7 @@
       color: var(--ink-muted);
       margin-top: 0.6rem;
     }
-
+ 
     .masthead-date-bar {
       display: flex;
       align-items: center;
@@ -106,10 +106,10 @@
       letter-spacing: 0.1em;
       color: var(--ink-faint);
     }
-
+ 
     .masthead-date-bar span { display: flex; align-items: center; gap: 0.35rem; }
     .masthead-date-bar .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
-
+ 
     nav {
       border-bottom: 1px solid var(--rule);
       padding: 0.6rem 1.5rem;
@@ -117,7 +117,7 @@
       justify-content: center;
       gap: 2rem;
     }
-
+ 
     nav a {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem;
@@ -127,14 +127,14 @@
       text-decoration: none;
       transition: color 0.15s;
     }
-
+ 
     nav a:hover { color: var(--accent); }
-
+ 
     .container { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
     .column { max-width: var(--column); margin: 0 auto; }
-
+ 
     #loading-state { padding: 5rem 1.5rem; text-align: center; }
-
+ 
     .spinner {
       width: 32px;
       height: 32px;
@@ -144,12 +144,12 @@
       animation: spin 0.8s linear infinite;
       margin: 0 auto 1.5rem;
     }
-
+ 
     @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
     #error-state { display: none; padding: 5rem 1.5rem; text-align: center; color: var(--ink-muted); }
     #digest { display: none; padding: 3rem 1.5rem 5rem; }
-
+ 
     .update-banner {
       background: var(--paper-warm);
       border: 1px solid var(--paper-mid);
@@ -162,10 +162,10 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-
+ 
     .update-banner-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
     .update-banner-time { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-muted); }
-
+ 
     .live-dot {
       display: inline-block;
       width: 7px;
@@ -175,57 +175,104 @@
       margin-right: 0.4rem;
       animation: pulse 2s ease-in-out infinite;
     }
-
+ 
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-
+ 
     .section { margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid var(--rule); }
     .section:last-child { border-bottom: none; }
-
+ 
     .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
     .section-number { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); line-height: 1; flex-shrink: 0; }
     .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); line-height: 1; padding-bottom: 2px; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3.5vw, 1.9rem); font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 1.25rem; }
     .section-body p { margin-bottom: 1.1rem; font-size: 1rem; }
     .section-body p:last-child { margin-bottom: 0; }
-
+ 
     .key-facts { background: var(--paper-warm); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0; }
     .key-facts-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
     .key-facts ul { list-style: none; padding: 0; }
     .key-facts li { font-size: 0.92rem; padding: 0.35rem 0; padding-left: 1rem; position: relative; color: var(--ink-muted); border-bottom: 0.5px solid var(--rule); }
     .key-facts li:last-child { border-bottom: none; }
     .key-facts li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
-
+ 
     .aus-callout { display: flex; gap: 1rem; align-items: flex-start; background: var(--paper-warm); border: 1px solid var(--paper-mid); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
     .aus-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
     .aus-callout-text { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.65; }
     .aus-callout-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-
+ 
     .sources-section { margin-top: 3rem; padding-top: 2rem; border-top: 3px double var(--rule); }
     .sources-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; }
     .sources-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .source-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 0.3rem 0.7rem; background: var(--paper-warm); border: 1px solid var(--paper-mid); border-radius: 3px; color: var(--ink-muted); }
-
+ 
     footer { border-top: 3px double var(--rule); padding: 2.5rem 1.5rem; text-align: center; }
     .footer-mission { font-style: italic; font-size: 0.9rem; color: var(--ink-muted); max-width: 520px; margin: 0 auto 1.5rem; line-height: 1.7; }
     .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--ink-faint); line-height: 2; }
-
+ 
     #about-page { display: none; padding: 3rem 1.5rem 5rem; }
     .about-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
     .about-body p { margin-bottom: 1rem; color: var(--ink-muted); }
-
+ 
     @media (max-width: 600px) {
       html { font-size: 16px; }
       .masthead { padding: 1.5rem 1rem 1rem; }
       nav { gap: 1.25rem; padding: 0.6rem 1rem; }
       .section-header { flex-direction: column; gap: 0.25rem; }
     }
-
+ 
     .fade-in { animation: fadeIn 0.4s ease both; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+ 
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 100;
+    }
+ 
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+ 
+    .sidebar-item:hover { opacity: 0.65; }
+    .sidebar-item.active { opacity: 1; }
+ 
+    .sidebar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+ 
+    .sidebar-item.active .sidebar-dot { transform: scale(1.7); }
+ 
+    .sidebar-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+ 
+    @media (max-width: 1200px) { .sidebar { display: none; } }
   </style>
 </head>
 <body>
-
+ 
   <header class="masthead">
     <div class="masthead-eyebrow">Daily briefing · Australian perspective</div>
     <h1 class="masthead-title">What Is Going On</h1>
@@ -238,25 +285,25 @@
       <span>No agenda. No spin.</span>
     </div>
   </header>
-
+ 
   <nav>
     <a href="#" onclick="showPage('digest')">Today's Briefing</a>
     <a href="#" onclick="showPage('about')">About This Site</a>
   </nav>
-
+ 
   <main class="container">
     <div id="loading-state">
       <div class="spinner"></div>
       <p style="font-style:italic; color: var(--ink-muted); font-size: 0.9rem;">Loading today's briefing...</p>
     </div>
-
+ 
     <div id="error-state" class="column">
       <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Briefing unavailable</p>
       <p style="font-size: 0.9rem;">Something went wrong loading today's digest. Try refreshing.</p>
     </div>
-
+ 
     <div id="digest" class="column fade-in"></div>
-
+ 
     <div id="about-page" class="column fade-in">
       <h2 class="about-title">About this site</h2>
       <div class="about-body">
@@ -269,7 +316,9 @@
       </div>
     </div>
   </main>
-
+ 
+  <aside class="sidebar" id="section-sidebar"></aside>
+ 
   <footer class="container">
     <p class="footer-mission">"An informed citizenry is vital for the proper functioning of a democracy."<br>Facts, not fear. Context, not clickbait.</p>
     <p class="footer-meta">
@@ -278,19 +327,51 @@
       Not affiliated with any government, party, or media organisation
     </p>
   </footer>
-
+ 
   <script>
     const now = new Date();
     const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Sydney' };
     document.getElementById('current-date').textContent = now.toLocaleDateString('en-AU', opts);
-
+ 
     function showPage(page) {
       document.getElementById('digest').style.display = page === 'digest' ? 'block' : 'none';
       document.getElementById('about-page').style.display = page === 'about' ? 'block' : 'none';
       document.getElementById('loading-state').style.display = 'none';
       document.getElementById('error-state').style.display = 'none';
     }
-
+ 
+    function buildSidebar() {
+      const sidebar = document.getElementById('section-sidebar');
+      const sections = document.querySelectorAll('.section');
+      if (!sections.length) return;
+      sidebar.innerHTML = '';
+ 
+      sections.forEach((section, i) => {
+        const label = section.querySelector('.section-label')?.textContent || 'Section ' + (i + 1);
+        section.id = 'section-' + i;
+ 
+        const item = document.createElement('a');
+        item.className = 'sidebar-item';
+        item.href = '#section-' + i;
+        item.innerHTML = '<span class="sidebar-dot"></span><span class="sidebar-label">' + label + '</span>';
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        sidebar.appendChild(item);
+      });
+ 
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          const idx = parseInt(entry.target.id.split('-')[1]);
+          const item = sidebar.children[idx];
+          if (item) item.classList.toggle('active', entry.isIntersecting);
+        });
+      }, { threshold: 0.25 });
+ 
+      sections.forEach(function(s) { observer.observe(s); });
+    }
+ 
     async function loadDigest() {
       try {
         const res = await fetch('./digest.json?v=' + Date.now());
@@ -298,44 +379,47 @@
         const data = await res.json();
         const container = document.getElementById('digest');
         let html = '';
-
+ 
         const updated = new Date(data.generated_at);
         const updatedStr = updated.toLocaleString('en-AU', {
           timeZone: 'Australia/Sydney',
           day: 'numeric', month: 'short', year: 'numeric',
           hour: '2-digit', minute: '2-digit'
         });
-
-        html += `<div class="update-banner"><span class="update-banner-label"><span class="live-dot"></span>Latest briefing</span><span class="update-banner-time">${updatedStr} AEDT</span></div>`;
-
-        data.sections.forEach((section, i) => {
-          html += `<div class="section"><div class="section-header"><span class="section-number">${String(i + 1).padStart(2, '0')}</span><span class="section-label">${section.label || ''}</span></div><h2 class="section-title">${section.title}</h2><div class="section-body">`;
-          section.paragraphs.forEach(p => { html += `<p>${p}</p>`; });
+ 
+        html += '<div class="update-banner"><span class="update-banner-label"><span class="live-dot"></span>Latest briefing</span><span class="update-banner-time">' + updatedStr + ' AEDT</span></div>';
+ 
+        data.sections.forEach(function(section, i) {
+          html += '<div class="section"><div class="section-header"><span class="section-number">' + String(i + 1).padStart(2, '0') + '</span><span class="section-label">' + (section.label || '') + '</span></div><h2 class="section-title">' + section.title + '</h2><div class="section-body">';
+          section.paragraphs.forEach(function(p) { html += '<p>' + p + '</p>'; });
           if (section.key_facts && section.key_facts.length) {
-            html += `<div class="key-facts"><div class="key-facts-title">Key facts</div><ul>${section.key_facts.map(f => `<li>${f}</li>`).join('')}</ul></div>`;
+            html += '<div class="key-facts"><div class="key-facts-title">Key facts</div><ul>' + section.key_facts.map(function(f) { return '<li>' + f + '</li>'; }).join('') + '</ul></div>';
           }
           if (section.australia_relevance) {
-            html += `<div class="aus-callout"><div class="aus-icon">🇦🇺</div><div><div class="aus-callout-label">Why this matters for Australia</div><div class="aus-callout-text">${section.australia_relevance}</div></div></div>`;
+            html += '<div class="aus-callout"><div class="aus-icon">🇦🇺</div><div><div class="aus-callout-label">Why this matters for Australia</div><div class="aus-callout-text">' + section.australia_relevance + '</div></div></div>';
           }
-          html += `</div></div>`;
+          html += '</div></div>';
         });
-
+ 
         if (data.sources && data.sources.length) {
-          html += `<div class="sources-section"><div class="sources-title">Sources consulted in this briefing</div><div class="sources-list">${data.sources.map(s => `<span class="source-tag">${s}</span>`).join('')}</div></div>`;
+          html += '<div class="sources-section"><div class="sources-title">Sources consulted in this briefing</div><div class="sources-list">' + data.sources.map(function(s) { return '<span class="source-tag">' + s + '</span>'; }).join('') + '</div></div>';
         }
-
+ 
         container.innerHTML = html;
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('digest').style.display = 'block';
+        buildSidebar();
+ 
       } catch (e) {
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('error-state').style.display = 'block';
         console.error(e);
       }
     }
-
+ 
     loadDigest();
   </script>
-
+ 
 </body>
 </html>
+ 

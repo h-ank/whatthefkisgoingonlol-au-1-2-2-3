@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-if (!ANTHROPIC_API_KEY) 
+if (!ANTHROPIC_API_KEY) {
   console.error('ERROR: ANTHROPIC_API_KEY environment variable not set.');
   process.exit(1);
 }

@@ -74,7 +74,7 @@ async function callClaude(messages) {
     },
     body: JSON.stringify({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 3000,
+      max_tokens: 2000,
       system: SYSTEM_PROMPT,
       tools: [{ type: 'web_search_20250305', name: 'web_search' }],
       messages
@@ -96,7 +96,7 @@ async function generateDigest() {
   let messages = [{ role: 'user', content: USER_PROMPT }];
   let finalContent = null;
   let iterations = 0;
-  const MAX_ITERATIONS = 5;
+  const MAX_ITERATIONS = 3;
 
   while (iterations < MAX_ITERATIONS) {
     iterations++;

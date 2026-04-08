@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCF03BT94D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YCF03BT94D');
+  </script>
   <meta charset="UTF-8" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='10' width='60' height='80' rx='4' fill='%238b1a1a'/><rect x='20' y='10' width='12' height='80' rx='2' fill='%23611212'/><line x1='38' y1='30' x2='72' y2='30' stroke='%23f5f0e8' stroke-width='4' stroke-linecap='round'/><line x1='38' y1='45' x2='72' y2='45' stroke='%23f5f0e8' stroke-width='4' stroke-linecap='round'/><line x1='38' y1='60' x2='60' y2='60' stroke='%23f5f0e8' stroke-width='4' stroke-linecap='round'/></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,15 +21,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCF03BT94D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YCF03BT94D');
-</script>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -63,7 +62,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* MASTHEAD */
     .masthead {
       border-bottom: 3px double var(--ink);
       padding: 2.5rem 1.5rem 1.5rem;
@@ -112,7 +110,6 @@
     .masthead-date-bar span { display: flex; align-items: center; gap: 0.35rem; }
     .masthead-date-bar .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
 
-    /* NAV */
     nav {
       border-bottom: 1px solid var(--rule);
       padding: 0.6rem 1.5rem;
@@ -133,23 +130,10 @@
 
     nav a:hover { color: var(--accent); }
 
-    /* LAYOUT */
-    .container {
-      max-width: var(--wide);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    .container { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+    .column { max-width: var(--column); margin: 0 auto; }
 
-    .column {
-      max-width: var(--column);
-      margin: 0 auto;
-    }
-
-    /* LOADING / ERROR STATES */
-    #loading-state {
-      padding: 5rem 1.5rem;
-      text-align: center;
-    }
+    #loading-state { padding: 5rem 1.5rem; text-align: center; }
 
     .spinner {
       width: 32px;
@@ -163,20 +147,9 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    #error-state {
-      display: none;
-      padding: 5rem 1.5rem;
-      text-align: center;
-      color: var(--ink-muted);
-    }
+    #error-state { display: none; padding: 5rem 1.5rem; text-align: center; color: var(--ink-muted); }
+    #digest { display: none; padding: 3rem 1.5rem 5rem; }
 
-    /* DIGEST */
-    #digest {
-      display: none;
-      padding: 3rem 1.5rem 5rem;
-    }
-
-    /* LAST UPDATED BANNER */
     .update-banner {
       background: var(--paper-warm);
       border: 1px solid var(--paper-mid);
@@ -190,19 +163,8 @@
       gap: 0.5rem;
     }
 
-    .update-banner-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-
-    .update-banner-time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-    }
+    .update-banner-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+    .update-banner-time { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-muted); }
 
     .live-dot {
       display: inline-block;
@@ -214,213 +176,43 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-    /* SECTIONS */
-    .section {
-      margin-bottom: 3.5rem;
-      padding-bottom: 3.5rem;
-      border-bottom: 1px solid var(--rule);
-    }
+    .section { margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid var(--rule); }
+    .section:last-child { border-bottom: none; }
 
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--accent);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      line-height: 1;
-      padding-bottom: 2px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-    }
-
-    .section-body p {
-      margin-bottom: 1.1rem;
-      font-size: 1rem;
-    }
-
+    .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+    .section-number { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); line-height: 1; flex-shrink: 0; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); line-height: 1; padding-bottom: 2px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3.5vw, 1.9rem); font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 1.25rem; }
+    .section-body p { margin-bottom: 1.1rem; font-size: 1rem; }
     .section-body p:last-child { margin-bottom: 0; }
 
-    /* KEY FACTS */
-    .key-facts {
-      background: var(--paper-warm);
-      border-left: 3px solid var(--accent);
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .key-facts-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .key-facts ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .key-facts li {
-      font-size: 0.92rem;
-      padding: 0.35rem 0;
-      padding-left: 1rem;
-      position: relative;
-      color: var(--ink-muted);
-      border-bottom: 0.5px solid var(--rule);
-    }
-
+    .key-facts { background: var(--paper-warm); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0; }
+    .key-facts-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .key-facts ul { list-style: none; padding: 0; }
+    .key-facts li { font-size: 0.92rem; padding: 0.35rem 0; padding-left: 1rem; position: relative; color: var(--ink-muted); border-bottom: 0.5px solid var(--rule); }
     .key-facts li:last-child { border-bottom: none; }
+    .key-facts li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
 
-    .key-facts li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.8rem;
-    }
+    .aus-callout { display: flex; gap: 1rem; align-items: flex-start; background: var(--paper-warm); border: 1px solid var(--paper-mid); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+    .aus-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .aus-callout-text { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.65; }
+    .aus-callout-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
 
-    /* AUSTRALIA FLAG */
-    .aus-callout {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      background: var(--paper-warm);
-      border: 1px solid var(--paper-mid);
-      border-radius: 4px;
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0;
-    }
+    .sources-section { margin-top: 3rem; padding-top: 2rem; border-top: 3px double var(--rule); }
+    .sources-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1rem; }
+    .sources-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .source-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 0.3rem 0.7rem; background: var(--paper-warm); border: 1px solid var(--paper-mid); border-radius: 3px; color: var(--ink-muted); }
 
-    .aus-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
+    footer { border-top: 3px double var(--rule); padding: 2.5rem 1.5rem; text-align: center; }
+    .footer-mission { font-style: italic; font-size: 0.9rem; color: var(--ink-muted); max-width: 520px; margin: 0 auto 1.5rem; line-height: 1.7; }
+    .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--ink-faint); line-height: 2; }
 
-    .aus-callout-text {
-      font-size: 0.92rem;
-      color: var(--ink-muted);
-      line-height: 1.65;
-    }
+    #about-page { display: none; padding: 3rem 1.5rem 5rem; }
+    .about-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .about-body p { margin-bottom: 1rem; color: var(--ink-muted); }
 
-    .aus-callout-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    /* SOURCES */
-    .sources-section {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 3px double var(--rule);
-    }
-
-    .sources-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-bottom: 1rem;
-    }
-
-    .sources-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .source-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--paper-warm);
-      border: 1px solid var(--paper-mid);
-      border-radius: 3px;
-      color: var(--ink-muted);
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 3px double var(--rule);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-    }
-
-    .footer-mission {
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      max-width: 520px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.7;
-    }
-
-    .footer-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--ink-faint);
-      line-height: 2;
-    }
-
-    /* ABOUT PAGE */
-    #about-page {
-      display: none;
-      padding: 3rem 1.5rem 5rem;
-    }
-
-    .about-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-body p {
-      margin-bottom: 1rem;
-      color: var(--ink-muted);
-    }
-
-    /* RESPONSIVE */
     @media (max-width: 600px) {
       html { font-size: 16px; }
       .masthead { padding: 1.5rem 1rem 1rem; }
@@ -428,15 +220,8 @@
       .section-header { flex-direction: column; gap: 0.25rem; }
     }
 
-    /* ANIMATION */
-    .fade-in {
-      animation: fadeIn 0.4s ease both;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .fade-in { animation: fadeIn 0.4s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -459,9 +244,7 @@
     <a href="#" onclick="showPage('about')">About This Site</a>
   </nav>
 
-  <!-- DIGEST PAGE -->
   <main class="container">
-
     <div id="loading-state">
       <div class="spinner"></div>
       <p style="font-style:italic; color: var(--ink-muted); font-size: 0.9rem;">Loading today's briefing...</p>
@@ -472,9 +255,7 @@
       <p style="font-size: 0.9rem;">Something went wrong loading today's digest. Try refreshing.</p>
     </div>
 
-    <div id="digest" class="column fade-in">
-      <!-- Injected by loadDigest() -->
-    </div>
+    <div id="digest" class="column fade-in"></div>
 
     <div id="about-page" class="column fade-in">
       <h2 class="about-title">About this site</h2>
@@ -487,7 +268,6 @@
         <p style="font-size: 0.85rem; color: var(--ink-faint); font-style: italic;">Built and maintained by an Australian who got tired of having to visit twelve tabs to understand what was happening.</p>
       </div>
     </div>
-
   </main>
 
   <footer class="container">
@@ -500,7 +280,6 @@
   </footer>
 
   <script>
-    // Set current date in masthead
     const now = new Date();
     const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Sydney' };
     document.getElementById('current-date').textContent = now.toLocaleDateString('en-AU', opts);
@@ -517,11 +296,9 @@
         const res = await fetch('./digest.json?v=' + Date.now());
         if (!res.ok) throw new Error('No digest');
         const data = await res.json();
-
         const container = document.getElementById('digest');
         let html = '';
 
-        // Update banner
         const updated = new Date(data.generated_at);
         const updatedStr = updated.toLocaleString('en-AU', {
           timeZone: 'Australia/Sydney',
@@ -529,65 +306,27 @@
           hour: '2-digit', minute: '2-digit'
         });
 
-        html += `
-          <div class="update-banner">
-            <span class="update-banner-label"><span class="live-dot"></span>Latest briefing</span>
-            <span class="update-banner-time">${updatedStr} AEDT</span>
-          </div>
-        `;
+        html += `<div class="update-banner"><span class="update-banner-label"><span class="live-dot"></span>Latest briefing</span><span class="update-banner-time">${updatedStr} AEDT</span></div>`;
 
-        // Sections
         data.sections.forEach((section, i) => {
-          html += `<div class="section">`;
-          html += `
-            <div class="section-header">
-              <span class="section-number">${String(i + 1).padStart(2, '0')}</span>
-              <span class="section-label">${section.label || ''}</span>
-            </div>
-            <h2 class="section-title">${section.title}</h2>
-            <div class="section-body">
-          `;
-
-          section.paragraphs.forEach(p => {
-            html += `<p>${p}</p>`;
-          });
-
+          html += `<div class="section"><div class="section-header"><span class="section-number">${String(i + 1).padStart(2, '0')}</span><span class="section-label">${section.label || ''}</span></div><h2 class="section-title">${section.title}</h2><div class="section-body">`;
+          section.paragraphs.forEach(p => { html += `<p>${p}</p>`; });
           if (section.key_facts && section.key_facts.length) {
-            html += `<div class="key-facts">
-              <div class="key-facts-title">Key facts</div>
-              <ul>
-                ${section.key_facts.map(f => `<li>${f}</li>`).join('')}
-              </ul>
-            </div>`;
+            html += `<div class="key-facts"><div class="key-facts-title">Key facts</div><ul>${section.key_facts.map(f => `<li>${f}</li>`).join('')}</ul></div>`;
           }
-
           if (section.australia_relevance) {
-            html += `<div class="aus-callout">
-              <div class="aus-icon">🇦🇺</div>
-              <div>
-                <div class="aus-callout-label">Why this matters for Australia</div>
-                <div class="aus-callout-text">${section.australia_relevance}</div>
-              </div>
-            </div>`;
+            html += `<div class="aus-callout"><div class="aus-icon">🇦🇺</div><div><div class="aus-callout-label">Why this matters for Australia</div><div class="aus-callout-text">${section.australia_relevance}</div></div></div>`;
           }
-
           html += `</div></div>`;
         });
 
-        // Sources
         if (data.sources && data.sources.length) {
-          html += `<div class="sources-section">
-            <div class="sources-title">Sources consulted in this briefing</div>
-            <div class="sources-list">
-              ${data.sources.map(s => `<span class="source-tag">${s}</span>`).join('')}
-            </div>
-          </div>`;
+          html += `<div class="sources-section"><div class="sources-title">Sources consulted in this briefing</div><div class="sources-list">${data.sources.map(s => `<span class="source-tag">${s}</span>`).join('')}</div></div>`;
         }
 
         container.innerHTML = html;
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('digest').style.display = 'block';
-
       } catch (e) {
         document.getElementById('loading-state').style.display = 'none';
         document.getElementById('error-state').style.display = 'block';

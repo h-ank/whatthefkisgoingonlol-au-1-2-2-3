@@ -1,92 +1,88 @@
 {
-  "generated_at": "2026-04-08T15:30:00+10:00",
+  "generated_at": "2026-04-08T11:00:00+10:00",
   "sources": [
+    "NBC News",
+    "CNN",
+    "NPR",
     "Al Jazeera",
     "Reuters",
-    "BBC",
-    "CBS News",
-    "CNN",
-    "NBC News",
-    "Fox News",
-    "NPR",
-    "Australian Government DFAT",
-    "Bloomberg"
+    "ABC News"
   ],
   "sections": [
     {
       "label": "Situation Overview",
-      "title": "US-Iran Ceasefire Agreed Just Hours Before Trump Deadline",
+      "title": "Two-Week Ceasefire Begins After Trump Threat",
       "paragraphs": [
-        "The United States and Iran reached a two-week ceasefire agreement on Tuesday, less than two hours before President Trump's 8pm deadline to reopen the Strait of Hormuz or face massive infrastructure strikes. The deal, mediated by Pakistan, requires Iran to immediately allow safe passage through the Strait of Hormuz in exchange for suspended US-Israeli bombing campaigns.",
-        "Under the agreement, Trump cancelled threats to destroy Iranian power plants and bridges that would have constituted potential war crimes under international law. Markets responded immediately, with oil prices plunging 13% and stock futures surging on news of the temporary halt to hostilities that have gripped global energy markets since February."
+        "The United States and Iran agreed to a two-week ceasefire that took effect on 8 April local time after President Donald Trump threatened massive strikes on civilian infrastructure. The ceasefire came just hours before Trump's deadline for Iran to reopen the Strait of Hormuz or face attacks on power plants and bridges.",
+        "Iran agreed to allow safe passage through the Strait of Hormuz for two weeks, while the US suspended all offensive operations. Pakistan's Prime Minister Shehbaz Sharif, acting as intermediary, announced that peace talks will begin in Islamabad on Friday 10 April. However, Israeli Prime Minister Benjamin Netanyahu said the ceasefire does not include Lebanon, contradicting Pakistan's claims."
       ],
       "key_facts": [
-        "Ceasefire announced with 1 hour 45 minutes to spare before Trump's deadline",
-        "Iran must reopen Strait of Hormuz for safe passage during 2-week truce",
-        "Oil prices fell 13% immediately following ceasefire news",
-        "Israel also agreed to suspend bombing operations against Iran"
+        "Ceasefire announced 7 April Washington time, implemented 8 April Middle East time",
+        "Iran to coordinate safe passage through Strait of Hormuz with armed forces",
+        "Peace talks scheduled for Islamabad on Friday 10 April",
+        "Israel says ceasefire excludes Lebanon operations"
       ],
-      "australia_relevance": "Australia had prepared for potential fuel rationing and economic recession if the conflict escalated. The Albanese government expressed relief at the pause in hostilities but warned Australians that fuel price impacts will persist regardless of the ceasefire outcome."
+      "australia_relevance": "Australian Prime Minister Anthony Albanese expressed support for the ceasefire and praised international negotiators' efforts."
     },
     {
       "label": "Background",
-      "title": "40-Day War Stemming from Failed Nuclear Negotiations",
+      "title": "War's Origins and Key Developments",
       "paragraphs": [
-        "The US-Israel military campaign against Iran began on February 28 after nuclear negotiations in Oman collapsed. Trump had demanded complete dismantlement of Iran's nuclear program and uranium enrichment capabilities, while Iran insisted on retaining domestic enrichment rights under international law. The talks breakdown led to coordinated strikes that killed Supreme Leader Ali Khamenei and installed his son Mojtaba as the new leader.",
-        "Iran's effective closure of the Strait of Hormuz - through which 20 percent of global oil transits - has been the conflict's most economically damaging aspect. Over 2,000 people have been killed in Iran according to Iranian authorities, while regional casualties include over 1,500 in Lebanon and 110 in Iraq since the war began."
+        "The current conflict began on 28 February 2026 when the US and Israel launched airstrikes assassinating Iran's Supreme Leader Ali Khamenei and other officials. Iran responded by closing the Strait of Hormuz and launching missile strikes against Israel, US bases, and allied countries in the region.",
+        "The war has killed over 3,400 people across the Middle East, including more than 1,900 in Iran from Israeli and US strikes. Iran had previously orchestrated attacks on Australian soil in 2024, leading Australia to expel Iran's ambassador and list the Revolutionary Guard Corps as a terrorist organisation."
       ],
       "key_facts": [
-        "War began Feb 28 after nuclear talks failed in Oman",
-        "Ali Khamenei killed in strikes, replaced by son Mojtaba",
-        "Strait of Hormuz shipping down 90% from normal levels",
-        "Over 2,000 killed in Iran since conflict started"
+        "War began with assassination of Supreme Leader Khamenei on 28 February",
+        "Strait of Hormuz closed by Iran in March, disrupting 20% of global oil",
+        "Over 3,400 killed regionwide, 1,900+ in Iran",
+        "Iran previously attacked Australian synagogue in Melbourne"
       ],
-      "australia_relevance": null
+      "australia_relevance": "Three Australian Defence Force personnel were aboard the US submarine that sank an Iranian frigate, though PM Albanese said they took no offensive action."
     },
     {
       "label": "Diplomacy",
-      "title": "Pakistan Mediates Deal as UN Resolution Blocked",
+      "title": "International Response and Sanctions",
       "paragraphs": [
-        "Pakistani Prime Minister Shehbaz Sharif emerged as the key mediator who brokered the ceasefire after intensive shuttle diplomacy between Washington and Tehran. Sharif has invited both US and Iranian delegations to Islamabad for comprehensive peace talks on Friday, April 10, with aims to negotiate a permanent settlement to end the 40-day conflict.",
-        "At the United Nations, Russia and China vetoed a Security Council resolution that would have provided international naval protection for Strait of Hormuz shipping. The 11-4 vote with two abstentions failed to reach the required threshold, with Moscow and Beijing arguing the resolution was biased against Iran while ignoring alleged US-Israeli aggression."
+        "Trump faced criticism for saying US allies including Australia 'didn't help us' in the Iran war, despite Australia providing defensive support in the Gulf. Iran earlier rejected a US 45-day ceasefire proposal, demanding permanent peace and lifting of all sanctions.",
+        "Iran's 10-point proposal reportedly includes withdrawal of US forces from regional bases, lifting of all sanctions, compensation payments, and Iran's right to nuclear enrichment. China and Russia vetoed a UN Security Council resolution aimed at reopening the Strait of Hormuz."
       ],
       "key_facts": [
-        "Pakistan PM Sharif credited as key ceasefire broker",
-        "Peace talks scheduled in Islamabad for April 10",
-        "UN Security Council resolution vetoed by Russia-China",
-        "Iran proposed 10-point peace plan rejected by Trump as 'not good enough'"
+        "Trump criticised Australia and Japan for not helping in Iran conflict",
+        "Iran demands permanent peace, not temporary ceasefire",
+        "Iranian proposal includes lifting sanctions and US withdrawal",
+        "China-Russia veto blocked UN resolution on Strait reopening"
       ],
-      "australia_relevance": "Australia supported the failed UN resolution and continues to maintain that Iran must cease attacks on merchant shipping. Australia has not been invited to participate in the Pakistan-mediated peace talks despite being affected by the shipping disruptions."
+      "australia_relevance": "Australia has deployed 85 personnel and E-7 Wedgetail aircraft to UAE for defensive operations, plus reportedly SAS forces for contingency planning."
     },
     {
       "label": "Economy & Energy",
-      "title": "Global Fuel Crisis Persists Despite Ceasefire Hope",
+      "title": "Global Oil Crisis Hits Australian Consumers",
       "paragraphs": [
-        "Despite the ceasefire announcement, energy analysts warn the global fuel crisis will persist for months due to damaged Middle Eastern infrastructure and disrupted supply chains. Only 53 ships transited the Strait of Hormuz last week - the highest since the war began but still 90 percent below normal traffic levels of approximately 130 daily transits.",
-        "The conflict has triggered what experts call the largest oil supply disruption in history, with Brent crude trading above $100 per barrel before falling on ceasefire news. European countries face potential fuel shortages by month-end, while Asian refineries that normally process Persian Gulf crude have been forced to source alternative supplies from as far as Mexico and the US Gulf Coast."
+        "US petrol prices have risen to a national average of $4.14 per gallon, up 39% since the war began. Oil prices surged past $114 per barrel before easing slightly after ceasefire news, with analysts warning prices could hit $185 per barrel if disruptions last three months.",
+        "In Australia, analysts predict petrol prices could jump 40 cents per litre, with some warning of $3.00 per litre if conflicts persist. The government has temporarily halved fuel taxes, helping prices drop 30 cents recently, while maintaining 39 days of petrol reserves and 29 days of diesel."
       ],
       "key_facts": [
-        "Strait shipping remains 90% below normal despite recent uptick",
-        "Brent crude fell from $117 to $103 on ceasefire news",
-        "Europe facing potential fuel shortages within weeks",
-        "At least 70 large oil tankers stranded off Singapore waiting for safe passage"
+        "US petrol up 39% to $4.14/gallon since war began",
+        "Oil peaked above $114/barrel, could hit $185 if disruptions persist",
+        "Australian petrol could rise 40c/litre, potentially reaching $3.00",
+        "Australia has 39 days petrol reserves, 29 days diesel"
       ],
-      "australia_relevance": "Australian fuel prices averaged $2.40 per litre this week after government excise cuts, down from peaks of $2.53 but still 35% above pre-war levels. The government maintains 39 days of petrol reserves and 29 days of diesel, with Energy Minister Chris Bowen confirming fuel deliveries are assured until mid-April despite some cancelled tanker shipments."
+      "australia_relevance": "Australia imports 90% of liquid fuel and government has activated emergency fuel reserves while temporarily cutting fuel taxes to ease price pressure."
     },
     {
       "label": "What to Watch",
-      "title": "Peace Talks and Hormuz Reopening Key to Sustained Calm",
+      "title": "Fragile Ceasefire and Energy Markets",
       "paragraphs": [
-        "The immediate focus shifts to whether Iran will fully reopen the Strait of Hormuz during the two-week ceasefire period, as required under the agreement. Any violations could trigger resumed US-Israeli strikes, while successful implementation may lead to the comprehensive peace talks scheduled in Islamabad on Friday.",
-        "Key indicators include daily ship transit numbers through Hormuz, oil price movements, and whether both sides can agree on nuclear restrictions and sanctions relief during the Pakistani-mediated negotiations. Trump is scheduled to meet with NATO Secretary-General Mark Rutte on Wednesday, potentially signalling broader Western diplomatic coordination on the Iran issue."
+        "The two-week ceasefire faces immediate challenges, with Israel excluding Lebanon from the agreement despite Pakistan's broader interpretation. Iran has warned that any deviation from the agreement could lead to renewed violence, keeping military forces on high alert.",
+        "Energy markets remain volatile with the International Energy Agency calling this the 'largest supply disruption in oil market history'. Full restoration of Strait of Hormuz traffic will take months even if the ceasefire holds, keeping upward pressure on global fuel prices through 2026."
       ],
       "key_facts": [
-        "Iran must immediately allow safe Hormuz passage under ceasefire terms",
-        "Comprehensive peace talks scheduled Islamabad April 10",
-        "Trump meeting NATO chief Wednesday may signal alliance coordination",
-        "Any ceasefire violations could restart bombing campaigns within hours"
+        "Disagreement over whether ceasefire includes Lebanon",
+        "Iran warns of 'full force' response if agreement violated",
+        "IEA calls this largest oil supply disruption in history",
+        "Full Strait restoration expected to take months"
       ],
-      "australia_relevance": "Australia will monitor fuel supply chains and shipping routes closely during the ceasefire period. Prime Minister Albanese has indicated Australia supports the diplomatic process while maintaining travel warnings against Iran, Israel and Lebanon remain at the highest 'Do Not Travel' level."
+      "australia_relevance": "Australian officials will meet with counterparts next week to devise plans for potential military operations to protect shipping if ceasefire fails."
     }
   ]
 }

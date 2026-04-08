@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-if (!ANTHROPIC_API_KEY) {
+if (!ANTHROPIC_API_KEY) 
   console.error('ERROR: ANTHROPIC_API_KEY environment variable not set.');
   process.exit(1);
 }
@@ -155,8 +155,6 @@ async function generateDigest() {
     const cleaned = textBlock.text
       .replace(/<cite[^>]*>/gi, '')
       .replace(/<\/cite>/gi, '')
-      .replace(/^[\s\S]*?(?=\{)/, '')  // strip any preamble before first {
-      .replace(/^[\s\S]*?(?=\[)/, '')  // or before first [
       .replace(/^\x60\x60\x60json\s*/i, '')
       .replace(/^\x60\x60\x60\s*/i, '')
       .replace(/\x60\x60\x60\s*$/i, '')

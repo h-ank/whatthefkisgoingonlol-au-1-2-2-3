@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    if: github.event.inputs.run_historical != 'true'
 
     steps:
       - name: Checkout repository

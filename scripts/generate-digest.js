@@ -2,8 +2,9 @@
 /**
  * generate-digest.js
  * Calls the Claude API with web search to generate a fresh Iran conflict digest.
- * Writes the result to public/digest.json
- * Run by GitHub Actions daily at 6AM AEDT (7PM UTC previous day).
+ * Saves to public/digest.json (current) and public/digests/YYYY-MM-DD.json (archive).
+ * Updates public/archive-index.json.
+ * Run by GitHub Actions daily at 6AM AEDT.
  */
 
 const fs = require('fs');
@@ -34,6 +35,7 @@ Return ONLY a valid JSON object — no markdown, no code fences, no preamble.
 Schema:
 {
   "generated_at": "<ISO 8601 datetime in Australian Eastern time>",
+  "headline": "<One sentence summary of today's most important development>",
   "sources": ["source1", "source2"],
   "sections": [
     {
@@ -114,11 +116,7 @@ async function generateDigest() {
       messages.push({ role: 'assistant', content: data.content });
       const toolResults = data.content
         .filter(b => b.type === 'tool_use')
-        .map(b => ({
-          type: 'tool_result',
-          tool_use_id: b.id,
-          content: ''
-        }));
+        .map(b => ({ type: 'tool_result', tool_use_id: b.id, content: '' }));
       messages.push({ role: 'user', content: toolResults });
       continue;
     }
@@ -140,8 +138,6 @@ async function generateDigest() {
     process.exit(1);
   }
 
-  console.log('Raw response (first 200 chars):', textBlock.text.substring(0, 200));
-
   let digestJson;
   try {
     const cleaned = textBlock.text
@@ -161,21 +157,93 @@ async function generateDigest() {
     digestJson.generated_at = new Date().toISOString();
   }
 
-  const outputPath = path.join(__dirname, '..', 'public', 'digest.json');
-  fs.writeFileSync(outputPath, JSON.stringify(digestJson, null, 2));
-  console.log('Digest written successfully.');
-  console.log('Sections:', digestJson.sections?.length ?? 0);
+  const publicDir = path.join(__dirname, '..', 'public');
+  const digestsDir = path.join(publicDir, 'digests');
 
-  // Trigger Netlify redeploy
+  if (!fs.existsSync(digestsDir)) {
+    fs.mkdirSync(digestsDir, { recursive: true });
+  }
+
+  // Save current digest
+  const currentPath = path.join(publicDir, 'digest.json');
+  fs.writeFileSync(currentPath, JSON.stringify(digestJson, null, 2));
+  console.log('Current digest written.');
+
+  // Save dated archive copy
+  const dateStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Australia/Sydney' }); // YYYY-MM-DD
+  const archivedPath = path.join(digestsDir, `${dateStr}.json`);
+  fs.writeFileSync(archivedPath, JSON.stringify(digestJson, null, 2));
+  console.log(`Archive digest saved: ${dateStr}.json`);
+
+  // Update archive index
+  updateArchiveIndex(publicDir, digestsDir, dateStr, digestJson);
+
+  // Trigger Netlify deploy
   if (NETLIFY_DEPLOY_HOOK) {
     console.log('Triggering Netlify deploy...');
     const deployRes = await fetch(NETLIFY_DEPLOY_HOOK, { method: 'POST' });
     console.log('Netlify deploy triggered:', deployRes.status);
-  } else {
-    console.warn('NETLIFY_DEPLOY_HOOK not set — skipping deploy trigger.');
   }
 
   console.log('Done.');
+}
+
+function updateArchiveIndex(publicDir, digestsDir, todayStr, digestJson) {
+  const indexPath = path.join(publicDir, 'archive-index.json');
+
+  let index = { weeks: [] };
+  if (fs.existsSync(indexPath)) {
+    try {
+      index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+    } catch (e) {
+      console.warn('Could not parse existing archive index, starting fresh.');
+    }
+  }
+
+  // Find or create the week for today
+  const today = new Date(todayStr);
+  const dayOfWeek = today.getDay(); // 0=Sun
+  const daysFromMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const weekStart = new Date(today);
+  weekStart.setDate(today.getDate() - daysFromMonday);
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekStart.getDate() + 6);
+
+  const weekStartStr = weekStart.toLocaleDateString('en-CA');
+  const weekEndStr = weekEnd.toLocaleDateString('en-CA');
+
+  let week = index.weeks.find(w => w.week_start === weekStartStr);
+  if (!week) {
+    week = {
+      week_start: weekStartStr,
+      week_end: weekEndStr,
+      title: null,
+      summary: null,
+      days: []
+    };
+    index.weeks.unshift(week);
+  }
+
+  // Add or update today's entry
+  const existingDay = week.days.find(d => d.date === todayStr);
+  const dayEntry = {
+    date: todayStr,
+    headline: digestJson.headline || digestJson.sections?.[0]?.title || 'Daily briefing',
+    file: `digests/${todayStr}.json`
+  };
+
+  if (existingDay) {
+    Object.assign(existingDay, dayEntry);
+  } else {
+    week.days.push(dayEntry);
+    week.days.sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  // Sort weeks newest first
+  index.weeks.sort((a, b) => b.week_start.localeCompare(a.week_start));
+
+  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+  console.log('Archive index updated.');
 }
 
 generateDigest().catch(err => {

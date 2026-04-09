@@ -2,8 +2,13 @@ name: Daily Digest Update
 
 on:
   schedule:
-    - cron: '0 19 * * *'  # 6:00 AM AEDT (UTC+11) / 5:00 AM AEST (UTC+10)
-  workflow_dispatch:        # Allow manual trigger
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+    inputs:
+      run_historical:
+        description: 'Run historical backfill (one-time setup)'
+        required: false
+        default: 'false'
 
 jobs:
   generate-digest:
@@ -20,15 +25,73 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate digest
+      - name: Generate daily digest
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NETLIFY_DEPLOY_HOOK: ${{ secrets.NETLIFY_DEPLOY_HOOK }}
         run: node scripts/generate-digest.js
 
-      - name: Commit and push updated digest
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/digest.json
-          git diff --staged --quiet || git commit -m "chore: update daily digest [skip ci]"
+          git add public/digest.json public/archive-index.json public/digests/
+          git diff --staged --quiet || git commit -m "chore: daily digest $(date -u '+%Y-%m-%d') [skip ci]"
+          git push
+
+  generate-weekly:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 20')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate weekly summary
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NETLIFY_DEPLOY_HOOK: ${{ secrets.NETLIFY_DEPLOY_HOOK }}
+        run: node scripts/generate-weekly.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/archive-index.json
+          git diff --staged --quiet || git commit -m "chore: weekly summary $(date -u '+%Y-%m-%d') [skip ci]"
+          git push
+
+  historical-backfill:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_historical == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run historical backfill
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-historical.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/archive-index.json
+          git diff --staged --quiet || git commit -m "chore: historical archive backfill [skip ci]"
           git push

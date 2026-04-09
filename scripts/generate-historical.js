@@ -22,7 +22,12 @@ if (!ANTHROPIC_API_KEY) {
 
 // War escalation started October 7, 2023
 // We'll generate weekly summaries from that point
-const WAR_START = new Date('2023-10-02'); // Monday of that week
+const fiveWeeksAgo = new Date();
+fiveWeeksAgo.setDate(fiveWeeksAgo.getDate() - 35);
+const dayOfWeek = fiveWeeksAgo.getDay();
+const daysFromMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+fiveWeeksAgo.setDate(fiveWeeksAgo.getDate() - daysFromMonday);
+const WAR_START = fiveWeeksAgo;
 const NOW = new Date();
 
 function getWeeksFrom(startDate) {

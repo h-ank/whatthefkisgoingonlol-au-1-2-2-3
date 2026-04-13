@@ -1,6 +1,19 @@
 {
   "weeks": [
     {
+      "week_start": "2026-04-13",
+      "week_end": "2026-04-19",
+      "title": null,
+      "summary": null,
+      "days": [
+        {
+          "date": "2026-04-14",
+          "headline": "US naval blockade of Iranian ports begins as tensions spike following weekend peace talks failure.",
+          "file": "digests/2026-04-14.json"
+        }
+      ]
+    },
+    {
       "week_start": "2026-04-06",
       "week_end": "2026-04-12",
       "title": null,

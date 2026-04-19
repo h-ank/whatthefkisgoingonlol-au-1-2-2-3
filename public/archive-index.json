@@ -1,6 +1,19 @@
 {
   "weeks": [
     {
+      "week_start": "2026-04-20",
+      "week_end": "2026-04-26",
+      "title": null,
+      "summary": null,
+      "days": [
+        {
+          "date": "2026-04-20",
+          "headline": "Iran reopened and re-closed the Strait of Hormuz within 24 hours, complicating US ceasefire talks as Israel-Lebanon truce faces violation claims.",
+          "file": "digests/2026-04-20.json"
+        }
+      ]
+    },
+    {
       "week_start": "2026-04-13",
       "week_end": "2026-04-19",
       "title": null,
